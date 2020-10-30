@@ -1,32 +1,50 @@
-import React from 'react';
-import './App.css';
-import ButtonGrid from './components/ButtonsGrid';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Header, Main, Search, Doc, DaysGrid } from "./components";
 
+const API_KEY = "8c9bd199bd76994ee86a9c6413fa453a";
 
-function App() {
-  let r,g,b, color
-  const user = 'admin';
-  const colorsArr = ['red', 'green', 'yellow', 'blue', 'orange', 'violet', 'grey', 'white'];
+const App = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [city, setCity] = useState("London");
 
-  const newRandomColor = () => {
-      r = Math.floor(Math.random() * 255);
-      g = Math.floor(Math.random() * 255);
-      b = Math.floor(Math.random() * 255);
-      color = `rgb(${r},${g},${b})`;
-  }
+  useEffect(() => {
+    const fetchData = async city => {
+      setLoading(true);
+      setError(null);
+      const query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+      try {
+        const { data } = await axios.get(query);
+        setData(data);
+      } catch (err) {
+        setError(err);
+      }
 
-  newRandomColor();
+      setLoading(false);
+    };
+
+    fetchData(city);
+  }, [city]);
+
   return (
-    <div className="App">
-      <h1>Classify This Color!</h1>
-      <div 
-        className="random-color"
-        style={{background:color}}>
-          bg: {color}
-        </div>
-      <ButtonGrid user={user} colorsArr={colorsArr} />
+    <div className='app'>
+      {loading ? (
+        "Loading..."
+      ) : error ? (
+        "XP błąd"
+      ) : (
+        <>
+          <Doc />
+          <Header city={data.name} />
+          <Main data={data} />
+          {data.coord.lat && <DaysGrid coord={data.coord} />}
+          <Search setCity={setCity} />
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default App;

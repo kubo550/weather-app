@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: #abe9cd;
+  background-image: linear-gradient(105deg, #abe9cd 0%, #3eadcf 74%);
+}
+
+.app {
+  width: 375px;
+  height: 667px;
+  background-color: #2a2a72;
+  background-image: linear-gradient(112deg, #2a2a72 0%, #009ffd 74%);
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #eee;
+  position: relative;
+}
+
+.doc {
+  position: absolute;
+  width: 100%;
+  height: 15px;
+  background-color: rgba(#000000, 0.7);
+  text-align: right;
+  font-size: 0.8rem;
+  padding-right: 5px;
+}
+
+.header {
+  margin-top: 40px;
+  h3 {
+    margin-bottom: 14px;
+    font-size: 1.3rem;
+  }
+  h5 {
+    font-size: 1.03rem;
+  }
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  .temp {
+    font-size: 3.2rem;
+  }
+}
+button {
+  cursor: pointer;
+}
+
+.days-grid {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-evenly;
+  .day {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px;
+    height: 130px;
+  }
+}
+
+.search {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  input {
+    padding: 2px;
+  }
+}

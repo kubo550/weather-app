@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #abe9cd;
+  background-image: linear-gradient(105deg, #abe9cd 0%, #3eadcf 74%);
+}
+
+.app {
+  width: 375px;
+  height: 667px;
+  background-color: #2a2a72;
+  background-image: linear-gradient(112deg, #2a2a72 0%, #009ffd 74%);
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #eee;
+  position: relative;
+}
+
+.doc {
+  position: absolute;
+  width: 100%;
+  height: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: right;
+  font-size: 0.8rem;
+  padding-right: 5px;
+}
+
+.header {
+  margin-top: 40px;
+}
+
+.header h3 {
+  margin-bottom: 14px;
+  font-size: 1.3rem;
+}
+
+.header h5 {
+  font-size: 1.03rem;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 25px;
+}
+
+.main .temp {
+  font-size: 3.2rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.days-grid {
+  margin-top: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.days-grid .day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 4px;
+  height: 130px;
+}
+
+.search {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.search input {
+  padding: 2px;
+}
+/*# sourceMappingURL=app.css.map */
