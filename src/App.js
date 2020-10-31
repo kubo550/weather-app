@@ -3,7 +3,8 @@ import axios from "axios";
 import Loading from "react-loading-components";
 import { Error, Header, Main, Search, Doc, DaysGrid } from "./components";
 
-const API_KEY = "8c9bd199bd76994ee86a9c6413fa453a";
+const API_KEY = process.env.REACT_APP_API_KEY;
+console.log(API_KEY);
 
 const App = () => {
   const [data, setData] = useState([]);

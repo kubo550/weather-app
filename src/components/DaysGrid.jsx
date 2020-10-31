@@ -3,7 +3,7 @@ import axios from 'axios';
 import Loading from 'react-loading-components';
 import { Day } from './';
 
-const API_KEY = "8c9bd199bd76994ee86a9c6413fa453a";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const DaysGrid = ({ coord : { lat, lon } }) => {
     const [dataHourly, setDataHourly] = useState([]);
