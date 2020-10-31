@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Day from './Day';
+import Loading from 'react-loading-components';
+import { Day } from './';
 
 const API_KEY = "8c9bd199bd76994ee86a9c6413fa453a";
 
@@ -34,7 +35,7 @@ const DaysGrid = ({ coord : { lat, lon } }) => {
         fetchApi(lat, lon);
     }, [lat, lon]);
     return (
-        loading ? "Loading" : error ? "kurwa blad" : (
+        loading ? <Loading type='rings' width={70} height={70} /> : error ? "We are sorry, try again later" : (
             <> 
                 <div className="days-grid">
                     {dataHourly.map(e => <Day key={e.dt} data={e} hourly={true} />)}

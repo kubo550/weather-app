@@ -6,8 +6,11 @@ const Search = ({ setCity }) => {
     
     const handleClick = () => {
         const val = inputRef.current.value 
-        if (val) setCity(val)
-    }
+        if (val) {
+            setCity(val)
+            inputRef.current.value  = ""
+        }
+    } 
 
     useEffect(() => {
         const handleKey = ({ keyCode }) => keyCode === 13 ? handleClick() : null
@@ -20,12 +23,11 @@ const Search = ({ setCity }) => {
     const iconStyle = {color: '#111', padding: '4px'}
 
     return (
-        <div className="search">
-            <input type="text" placeholder="Enter city name..." autoFocus ref={inputRef} />
-            <button onClick={handleClick}>
-                <i className="fas fa-globe-europe" style={iconStyle}></i>
-            </button>
+        <div className="form__group field">
+            <input type="input" className="form__field" placeholder="Name" ref={inputRef} autoFocus />
+            <label className="form__label">City</label>
         </div>
+            
     )
 }
 

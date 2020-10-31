@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, Main, Search, Doc, DaysGrid } from "./components";
+import Loading from "react-loading-components";
+import { Error, Header, Main, Search, Doc, DaysGrid } from "./components";
 
 const API_KEY = "8c9bd199bd76994ee86a9c6413fa453a";
 
@@ -30,19 +31,20 @@ const App = () => {
 
   return (
     <div className='app'>
+      <Doc />
+
       {loading ? (
-        "Loading..."
+        <Loading type='tail_spin' width={100} height={100} />
       ) : error ? (
-        "XP błąd"
+        <Error city={city} err={error} />
       ) : (
         <>
-          <Doc />
           <Header city={data.name} />
           <Main data={data} />
-          {data.coord.lat && <DaysGrid coord={data.coord} />}
-          <Search setCity={setCity} />
+          <DaysGrid coord={data.coord} />
         </>
       )}
+      <Search setCity={setCity} />
     </div>
   );
 };
