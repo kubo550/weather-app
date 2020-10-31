@@ -22,17 +22,14 @@ const App = () => {
       } catch (err) {
         setError(err);
       }
-
       setLoading(false);
     };
-
     fetchData(city);
   }, [city]);
 
   return (
     <div className='app'>
       <Doc />
-
       {loading ? (
         <Loading type='tail_spin' width={100} height={100} />
       ) : error ? (
