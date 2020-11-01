@@ -19,8 +19,6 @@ const Search = ({ setCity }) => {
 
         return () => document.removeEventListener('keydown', handleKey)
     })
-    
-    const iconStyle = {color: '#111', padding: '4px'}
 
     return (
         <div className="form__group field">

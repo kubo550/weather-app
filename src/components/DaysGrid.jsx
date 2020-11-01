@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Loading from 'react-loading-components';
 import { Day } from './';
-
-const API_KEY = process.env.REACT_APP_API_KEY;
+import { fetchWithLatLon } from '../api';
 
 const DaysGrid = ({ coord : { lat, lon } }) => {
     const [dataHourly, setDataHourly] = useState([]);
@@ -16,21 +14,15 @@ const DaysGrid = ({ coord : { lat, lon } }) => {
             setLoading(true);
             setError(null);
 
-            const q = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${API_KEY}`;
-            
-            try {
-                const { data } = await axios.get(q);
-                const dataHourly = data.hourly.filter((_item, i) => i  % 3 === 1).splice(0,5);                
-                const dataDays = data.daily.splice(0,5);
-                
-                setDataHourly(dataHourly);
-                setDataDays(dataDays);
+            const { data, err } = await fetchWithLatLon(lat, lon);
+            if (err) setError(err)
 
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
+            const dataHourly = data.hourly.filter((_item, i) => i  % 3 === 1).splice(0,5);                
+            const dataDays = data.daily.splice(0,5);
+            
+            setDataHourly(dataHourly);
+            setDataDays(dataDays);
+            setLoading(false)
         } 
         fetchApi(lat, lon);
     }, [lat, lon]);

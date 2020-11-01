@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Loading from "react-loading-components";
 import { Error, Header, Main, Search, Doc, DaysGrid } from "./components";
-
-const API_KEY = process.env.REACT_APP_API_KEY;
-console.log(API_KEY);
+import { fetchMainData } from "./api";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -16,13 +13,10 @@ const App = () => {
     const fetchData = async city => {
       setLoading(true);
       setError(null);
-      const query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
-      try {
-        const { data } = await axios.get(query);
-        setData(data);
-      } catch (err) {
-        setError(err);
-      }
+
+      const { data, err } = await fetchMainData(city);
+      err ? setError(err) : setData(data);
+
       setLoading(false);
     };
     fetchData(city);
