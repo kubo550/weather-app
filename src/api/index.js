@@ -4,8 +4,6 @@ const URL = "http://api.openweathermap.org/data/2.5/";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const CONFIG = "&units=metric";
 
-console.log("API key" + API_KEY);
-
 export const fetchMainData = async city => {
   const query = `${URL}weather?q=${city}${CONFIG}&appid=${API_KEY}`;
   try {
