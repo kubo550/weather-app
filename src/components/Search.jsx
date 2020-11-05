@@ -1,22 +1,18 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useCallback } from 'react'
 
 const Search = ({ setCity }) => {
-
     const inputRef = useRef()
-    
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         const val = inputRef.current.value 
         if (val) {
             setCity(val)
             inputRef.current.value  = ""
         }
-    } 
+    }, [setCity])
 
     useEffect(() => {
         const handleKey = ({ keyCode }) => keyCode === 13 ? handleClick() : null
-        
         document.addEventListener('keydown', handleKey)
-
         return () => document.removeEventListener('keydown', handleKey)
     })
 

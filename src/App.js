@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Loading from "react-loading-components";
 import { Error, Header, Main, Search, Doc, DaysGrid } from "./components";
 import { fetchMainData } from "./api";
+import { useQuery } from 'react-query'
 
 const App = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [city, setCity] = useState("London");
-
-  useEffect(() => {
-    const fetchData = async city => {
-      setLoading(true);
-      setError(null);
-
-      const { data, err } = await fetchMainData(city);
-      err ? setError(err) : setData(data);
-
-      setLoading(false);
-    };
-    fetchData(city);
-  }, [city]);
+  const {data, isLoading, error, isError} = useQuery(['mainQuery', city], fetchMainData)
 
   return (
     <div className='app'>
       <Doc />
-      {loading ? (
+      {isLoading ? (
         <Loading type='tail_spin' width={100} height={100} />
-      ) : error ? (
+      ) : isError ? (
         <Error city={city} err={error} />
       ) : (
         <>
